@@ -19,7 +19,7 @@ const append = (messege, position) => {
 form.addEventListener('submit', (e) => {
     e.preventDefault();
     const messege = messegeInput.value;
-    while(messege!=="null")
+    if(messege!=="null")
     {
     append(`${name}:${messege}`, 'right');
     }
