@@ -35,7 +35,7 @@ m.append(`Welcome ${name}! Let's Chatting..`);
 socket.on('user-joined', (name,count) => {
     // when some one first time join the room then will get the already joind user count
     console.log(count)
-    document.getElementById('Active').innerHTML = "Online:"+count
+    document.getElementById('Active').innerHTML = "Active:"+count
     append(`${name} joined the chat`, 'right')
     scrollToBottom();
 })
@@ -55,6 +55,6 @@ function scrollToBottom() {
 socket.on('update-count', count => {
     // when sone one join or leave the chat room
     console.log(count)
-    document.getElementById('Active').innerHTML = "Online:"+count
+    document.getElementById('Active').innerHTML = "Active:"+count
 })
 
