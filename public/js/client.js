@@ -1,4 +1,3 @@
-
 const socket = io('/');
 const form = document.getElementById('send-container');
 const messegeInput = document.getElementById('messageInp')
@@ -24,7 +23,6 @@ form.addEventListener('submit', (e) => {
     append(`${name}:${messege}`, 'right');
     console.log(messege)
     
-    socket.emit('send', messege);
     messegeInput.value = '';
 
 })
@@ -32,8 +30,6 @@ do{
 var name = prompt("Enter your name to join")
 console.log(name)
 } while(!(/^\S{3,}$/.test(name))||name=="null"||name==""||name==" "||name=="  "||name=="   "||name=="    "||name=="     "||name=="     ")
-
-
 
 socket.emit('joined-room', name)
 m.append(`Welcome ${name}!`);
