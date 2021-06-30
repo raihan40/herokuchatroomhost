@@ -31,7 +31,8 @@ form.addEventListener('submit', (e) => {
 do{
 var name = prompt("Enter your name to join")
 console.log(name)
-} while(name=="null"||name=="")
+} while(name=="null"||name==""||name==" "||name=="  "||name=="   "||name=="    "||name=="     "||name=="     ")
+
 
 socket.emit('joined-room', name)
 m.append(`Welcome ${name}!`);
