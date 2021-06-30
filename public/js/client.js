@@ -34,7 +34,7 @@ console.log(name)
 } while(name=="null"||name=="")
 
 socket.emit('joined-room', name)
-m.append(`Welcome ${name}! Let's Chatting..`);
+m.append(`Welcome ${name}!`);
 
 socket.on('user-joined', (name,count) => {
     // when some one first time join the room then will get the already joind user count
