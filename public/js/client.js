@@ -22,7 +22,7 @@ form.addEventListener('submit', (e) => {
     console.log(messege)
     append(`${name}:${messege}`, 'right');
     console.log(messege)
-    
+    socket.emit('send', messege);
     messegeInput.value = '';
 
 })
