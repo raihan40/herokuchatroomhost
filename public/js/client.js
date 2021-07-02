@@ -4,6 +4,8 @@ const messegeInput = document.getElementById('messageInp')
 const messegecontainer = document.querySelector(".container")
 const m = document.getElementById('middle')
 var audio = new Audio('tune.mp3');
+var audio1=new Audio('pictune.mp3');
+const pic =document.getElementById('sendImage');
 
 const append = (messege, position) => {
     const messegeElement = document.createElement('div');
@@ -60,3 +62,36 @@ socket.on('update-count', count => {
     document.getElementById('Active').innerHTML = "Online:"+count
 })
 
+socket.on('newImg',(imgData) =>{ 
+    displayImage(imgData);
+})
+
+pic.addEventListener('change',function(e){
+    console.log(pic.files)
+    const reader= new FileReader()
+    if(!reader)
+    {
+        append("Your browser does not support");
+        messegeInput.value = '';
+        return;
+
+    };
+    reader.onload = function(e){
+        messegeInput.value = ''
+        socket.emit('img',e.target.result);
+        displayImage(e.target.result)
+       
+        
+    }
+    reader.readAsDataURL(pic.files[0])
+
+    },false)
+
+function displayImage(imgData)
+{
+    messegeElement=document.createElement('p')
+    messegeElement.innerHTML = '<a href="' + imgData + '" target="_blank"><img src="' + imgData + '"/></a>';
+    messegecontainer.appendChild(messegeElement);
+    audio1.play();
+    scrollToBottom();
+}
