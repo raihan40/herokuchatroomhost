@@ -96,7 +96,7 @@ function displayImage(imgData,position)
     picture=document.createElement('p')
     messegecontainer.appendChild(picture);
     picture.classList.add(position)
-    picture.innerHTML = name+":"+'<a href="' + imgData + '" target="_blank"><img src="' + imgData + '"/></a>';
+    picture.innerHTML = `${name}`+":"+'<a href="' + imgData + '" target="_blank"><img src="' + imgData + '"/></a>';
     audio1.play();
     scrollToBottom();
 }
