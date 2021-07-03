@@ -63,7 +63,7 @@ socket.on('update-count', count => {
 })
 
 socket.on('newImg',(imgData) =>{ 
-    displayImage(imgData);
+    displayImage(imgData,'left');
     scrollToBottom();
 
 })
@@ -82,7 +82,7 @@ pic.addEventListener('change',function(e){
     reader.onload = (e) => {
         e.preventDefault();
         messegeInput.value = '';
-        displayImage(e.target.result);
+        displayImage(e.target.result,'right');
         socket.emit('img', e.target.result);
 
 
@@ -91,11 +91,12 @@ pic.addEventListener('change',function(e){
 
     },false)
 
-function displayImage(imgData)
+function displayImage(imgData,position)
 {
     picture=document.createElement('p')
     messegecontainer.appendChild(picture);
-    picture.innerHTML = '<a href="' + imgData + '" target="_blank"><img src="' + imgData + '"/></a>';
+    picture.classList.add(position)
+    picture.innerHTML = name+":"+'<a href="' + imgData + '" target="_blank"><img src="' + imgData + '"/></a>';
     audio1.play();
     scrollToBottom();
 }
