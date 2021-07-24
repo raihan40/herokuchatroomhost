@@ -103,10 +103,10 @@ function displayImage(imgData,position)
 
 function close_window() {
     if (confirm(name+"! you want to left? ")) {
-        window.open("", '_self').window.close();
+        
         
            
-              window.location.href = 's1.html'
+              window.location.href = '/js/s1.html'
             }
           
     
