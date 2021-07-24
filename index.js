@@ -22,7 +22,7 @@ io.on('connection', socket => {
         socket.broadcast.emit('receive', { messege: messege, name: user[socket.id] })
     })
     socket.on('img',(imgData) => {
-        socket.broadcast.emit('newImg', imgData);
+        socket.broadcast.emit('newImg',imgData);
     });
     
     socket.on('disconnect', messege => {
