@@ -45,6 +45,7 @@ socket.on('user-joined', (name,count) => {
 })
 socket.on('receive', data => {
     append(`${data.name} :${data.messege} `, 'left')
+    console.log(data.name);
     scrollToBottom();
 })
 
@@ -62,41 +63,51 @@ socket.on('update-count', count => {
     document.getElementById('Active').innerHTML = "Online:"+count
 })
 
-socket.on('newImg',(imgData) =>{ 
+socket.on('newImg',imgData=>{ 
     displayImage(imgData,'left');
     scrollToBottom();
 
 })
 
-pic.addEventListener('change',function(e){
-    e.preventDefault();
-    console.log(pic.files)
-    const reader= new FileReader()
+pic.addEventListener('change',function (){
+        if (this.files.length != 0) {
+          var file  = this.files[0];
+           reader = new FileReader();
     if(!reader)
     {
         append("Your browser does not support");
-        messegeInput.value = '';
+        this.value = '';
         return;
 
     };
-    reader.onload = (e) => {
+    reader.onload = function(e){
         e.preventDefault();
-        messegeInput.value = '';
-        displayImage(e.target.result,'right');
+        this.value = '';
         socket.emit('img', e.target.result);
-
-
+        displayImage(e.target.result,'right');
     }
-    reader.readAsDataURL(pic.files[0])
+    reader.readAsDataURL(file)
+    }
 
-    },false)
+    },false);
 
 function displayImage(imgData,position)
 {
     picture=document.createElement('p')
-    messegecontainer.appendChild(picture);
+    messegecontainer.append(picture);
     picture.classList.add(position)
     picture.innerHTML ='<a href="' + imgData + '" target="_blank"><img src="' + imgData + '"/></a>';
     audio1.play();
     scrollToBottom();
 }
+
+function close_window() {
+    if (confirm(name+"! you want to left? ")) {
+        window.open("", '_self').window.close();
+        
+           
+              window.location.href = 's1.html'
+            }
+          
+    
+  }
